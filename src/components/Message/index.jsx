@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
 
 class Message extends Component {
-  state = {
-    isRead: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isRead: false,
+    }
+  }
 
-  handleRad = () => {
+  handleRead = () => {
     this.setState({
       isRead: true,
     });
   };
 
   render() {
-    const { messageSender, textMessage } = this.props;
+    const { messageSender } = this.props;
+    const { isRead } = this.state;
+    const textMessage = 'Hi!'
 
     return (
-      <section>
-        <p>{messageSender} says:</p>
-        <input>Check this</input>
-        <p>{textMessage}</p>
-        <button onClick={this.handleRad} disabled={this.isRead}>
+      <article>
+        <h1>{messageSender} User says:</h1>
+        <h2>{textMessage}</h2>
+        <p>User's message {isRead ? 'read' : 'unread'}</p>
+        <button disabled={isRead} onClick={this.handleRead}>
           Mark as read
         </button>
-      </section>
+      </article>
     );
   }
 }
